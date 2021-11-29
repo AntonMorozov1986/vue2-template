@@ -1,0 +1,39 @@
+{
+    "name": "vue2-template",
+    "version": "0.1.0",
+    "description": "The temlate for vue2 applications",
+    "main": "index.js",
+    "engineStrict": true,
+    "engines": {
+        "node": "^16.13.0",
+        "npm": "^8.1.0"
+    },
+    "scripts": {
+        "lint": "npm run lint:css && npm run lint:js",
+        "lint:js": "eslint --ext .js,.vue --fix",
+        "lint:css": "stylelint \"./src/**/*.{css,sass,scss,vue}\" --fix"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AntonMorozov1986/vue2-template.git"
+    },
+    "author": "Anton Morozov",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/AntonMorozov1986/vue2-template/issues"
+    },
+    "homepage": "https://github.com/AntonMorozov1986/vue2-template#readme",
+    "devDependencies": {
+        "@babel/core": "^7.16.0",
+        "@babel/preset-env": "^7.16.4",
+        "cross-env": "^7.0.3",
+        "eslint": "^8.3.0",
+        "eslint-plugin-vue": "^8.1.1",
+        "stylelint": "^14.1.0",
+        "stylelint-config-rational-order": "^0.1.2",
+        "stylelint-config-recommended": "^6.0.0",
+        "stylelint-config-standard-scss": "^3.0.0",
+        "stylelint-order": "^5.0.0",
+        "stylelint-scss": "^4.0.0"
+    }
+}
