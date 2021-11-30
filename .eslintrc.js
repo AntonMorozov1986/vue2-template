@@ -70,5 +70,8 @@ module.exports = {
             named: 'never',
         }],
         'no-multi-assign': 2,
+
+        //vue rules
+        'vue/html-indent': ['error', 4],
     },
 };
