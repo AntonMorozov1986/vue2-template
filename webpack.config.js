@@ -33,21 +33,29 @@ module.exports = () => {
                 },
                 {
                     test: /\.css$/,
-                    use: ['style-loader', 'css-loader'],
-                },
-                {
-                    test: /\.s[ac]ss$/i,
                     use: [
                         'style-loader',
                         'css-loader',
+                    ],
+                },
+                {
+                    test: /\.scss$/i,
+                    use: [
+                        'vue-style-loader',
+                        'css-loader',
                         'sass-loader',
                     ],
+                },
+                {
+                    test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                    type: 'asset/resource',
                 },
             ],
         },
         resolve: {
             extensions: ['.vue', '.js'],
             alias: {
+                '@src': resolve('src'),
                 '@style': resolve('src/styles'),
                 '@global': resolve('src/global'),
                 '@components': resolve('src/components'),
