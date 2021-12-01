@@ -4,6 +4,7 @@
         <p>Some app text</p>
     </div>
 </template>
+
 <script>
 import GreetingElement from './components/Greeting';
 
@@ -16,5 +17,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+div{
+    background-color: #f7f7f7;
+}
 </style>
