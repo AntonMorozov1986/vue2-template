@@ -1,2 +1,4 @@
 node_modules/
 dist/
+
+scripts/webpack/vue_cli_example
