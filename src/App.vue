@@ -19,6 +19,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '/src/styles/main';
+
 div{
     color: #a4a4ff;
     text-transform: uppercase;
