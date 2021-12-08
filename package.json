@@ -9,9 +9,9 @@
         "npm": "^8.1.0"
     },
     "scripts": {
-        "check": "cross-env NODE_ENV=production CHECK_BUILD=true node \"scripts/webpack/build.js\"",
-        "build": "cross-env NODE_ENV=production node \"scripts/webpack/build.js\"",
-        "serve": "cross-env NODE_ENV=development node \"scripts/webpack/dev_server.js\"",
+        "check": "cross-env NODE_ENV=production CHECK_BUILD=true node --require @babel/register \"scripts/webpack/build.js\"",
+        "build": "cross-env NODE_ENV=production node --require @babel/register \"scripts/webpack/build.js\"",
+        "serve": "cross-env NODE_ENV=development node --require @babel/register \"scripts/webpack/dev_server.js\"",
         "lint": "npm run lint:css && npm run lint:js",
         "lint:js": "eslint --ext .js,.vue --fix",
         "lint:css": "stylelint \"./src/**/*.{css,sass,scss,vue}\" --fix"
@@ -32,9 +32,10 @@
     "devDependencies": {
         "@babel/core": "^7.16.0",
         "@babel/preset-env": "^7.16.4",
-        "@mapbox/stylelint-processor-arbitrary-tags": "^0.4.0",
+        "@babel/register": "^7.16.0",
         "app-root-path": "^3.0.0",
         "babel-loader": "^8.2.3",
+        "babel-plugin-dynamic-import-node": "^2.3.3",
         "clean-webpack-plugin": "^4.0.0",
         "compression-webpack-plugin": "^9.0.1",
         "cross-env": "^7.0.3",

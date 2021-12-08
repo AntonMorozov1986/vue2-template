@@ -1,11 +1,6 @@
-require('dotenv').config();
-const { path: PROJECT_ROOT } = require('app-root-path');
-const path = require('path');
-const appConfig = require(path.resolve(PROJECT_ROOT, 'app_config/config.js'));
+import { HotModuleReplacementPlugin } from 'webpack';
 
-const { HotModuleReplacementPlugin } = require('webpack');
-
-module.exports = () => {
+export const getWebpackDevConfig = () => {
     return {
         entry: {
             app: './src/main.js',
@@ -33,12 +28,6 @@ module.exports = () => {
         plugins: [
             new HotModuleReplacementPlugin(),
         ],
-        devServer: {
-            compress: true,
-            hot: true,
-            host: appConfig('local_domain'),
-            historyApiFallback: true,
-        },
-        devtool: 'eval-source-map',
+        devtool: 'eval-cheap-module-source-map',
     };
 };

@@ -7,7 +7,7 @@ module.exports = api =>{
             [
                 '@babel/preset-env',
                 {
-                    // debug: true,
+                    debug: false,
                     spec: true, // код более стабильный, но медленнее
                     loose: false, // код менее стабильный, но быстрее
                 },

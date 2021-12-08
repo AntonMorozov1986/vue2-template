@@ -1,9 +1,10 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+import { getWebpackCompiler } from './compiler';
 
+// require('dotenv').config();
 // const chalk = require('chalk');
-const getWebpackCompiler = require('./compiler');
 
-console.clear();
+dotenv.config();
 
 console.log('START BUILD');
 

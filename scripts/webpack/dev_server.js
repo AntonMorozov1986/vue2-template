@@ -1,17 +1,38 @@
 require('dotenv').config();
 
+const { APP_CONFIG_FILE } = require('./constants');
+const appConfig = require(APP_CONFIG_FILE);
+
 const WebpackDevServer = require('webpack-dev-server');
-// const chalk = require('chalk');
+// const chalk = require('chalk'); // Красит консоль
 
-const webpackDevConfig = require('./configs/webpack.dev');
-const getWebpackCompiler = require('./compiler');
+import { getWebpackCompiler } from './compiler';
 
-console.clear();
 console.log('START BUILD');
+
+const getProxyList = () => {
+    const api_routes = appConfig('api_routes');
+    const api_url = appConfig('api_url');
+    if (!api_routes) {
+        return {};
+    }
+    const proxyList = {};
+    api_routes.forEach(route => {
+        proxyList[route] = api_url;
+    });
+
+    return proxyList;
+};
 
 const webpackCompiler = getWebpackCompiler();
 
-const devServerOptions = { ...webpackDevConfig().devServer };
+const devServerOptions = {
+    compress: true,
+    hot: true,
+    host: appConfig('local_domain'),
+    historyApiFallback: true,
+    proxy: getProxyList(),
+};
 const server = new WebpackDevServer(devServerOptions, webpackCompiler);
 
 server.start();

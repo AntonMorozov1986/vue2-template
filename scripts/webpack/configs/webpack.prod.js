@@ -1,15 +1,14 @@
-require('dotenv').config();
-const path = require('path');
-const { path: PROJECT_ROOT } = require('app-root-path');
+import path from 'path';
+import { PROJECT_ROOT } from '../constants';
 
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+import MiniCSSExtractPlugin from 'mini-css-extract-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 
 function resolve(dir) {
     return path.resolve(PROJECT_ROOT, dir);
 }
 
-module.exports = () => {
+export const getWebpackProdConfig = () => {
     return {
         mode: 'production',
         output: {
@@ -66,7 +65,7 @@ module.exports = () => {
         },
         plugins: [
             new MiniCSSExtractPlugin({
-                filename: '[name].[contenthash:8].css',
+                filename: 'assets/css/[name].[contenthash:8].css',
             }),
         ],
     };

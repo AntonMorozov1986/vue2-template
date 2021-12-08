@@ -1,23 +1,33 @@
-const webpack = require('webpack');
-const { merge } = require('webpack-merge');
+import { webpack } from 'webpack';
+import { merge } from 'webpack-merge';
 
-const getWebpackBaseConfig = require('./configs/webpack.base');
-const getWebpackDevConfig = require('./configs/webpack.dev');
-const getWebpackProdConfig = require('./configs/webpack.prod');
-const getWebpackCheckConfig = require('./configs/webpack.check');
+import {
+    getWebpackBaseConfig,
+    getWebpackCheckConfig,
+    getWebpackDevConfig,
+    getWebpackProdConfig
+} from './configs';
 
-module.exports = () => {
+export const getWebpackCompiler = () => {
     let config = getWebpackBaseConfig();
-    switch (process.env.NODE_ENV) {
-        case 'production':
-            config = merge(config, getWebpackProdConfig());
-            if (process.env.CHECK_BUILD) {
-                config = merge(config, getWebpackCheckConfig());
-            }
-            break;
-        case 'development':
-            config = merge(config, getWebpackDevConfig());
+    if (process.env.NODE_ENV === 'production') {
+        config = merge(config, getWebpackProdConfig());
+        if (process.env.CHECK_BUILD) {
+            config = merge(config, getWebpackCheckConfig());
+        }
+    } else {
+        config = merge(config, getWebpackDevConfig());
     }
 
-    return webpack(config);
+    const compiler = webpack(config);
+
+    compiler.hooks.beforeRun.tap({ name: 'start' }, () => {
+        console.log('compilation start');
+    });
+
+    compiler.hooks.done.tap({ name: 'done' }, () => {
+        console.log('compilation completed');
+    });
+
+    return compiler;
 };

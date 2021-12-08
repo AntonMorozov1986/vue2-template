@@ -9,11 +9,16 @@ const APP_CONFIG = {
         value: process.env.LOCAL_DEV_DOMAIN,
         type: String,
     },
-    // api_url: {
-    //     default: 'https://api.github.com',
-    //     value: process.env.API_BASE_URL,
-    //     type: String,
-    // },
+    api_url: {
+        default: 'http://localhost:3000',
+        value: process.env.API_BASE_URL,
+        type: String,
+    },
+    api_routes: {
+        default: '["/api", "/routes"]',
+        value: process.env.API_ROUTES,
+        type: Array,
+    },
 };
 
 module.exports = key => {
@@ -41,7 +46,7 @@ module.exports = key => {
                 break;
 
             case Array:
-                value = JSON.parse(value).split(',');
+                value = JSON.parse(value);
                 break;
         }
     }

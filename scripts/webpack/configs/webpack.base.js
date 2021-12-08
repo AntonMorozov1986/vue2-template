@@ -1,12 +1,12 @@
 const path = require('path');
-const { path: PROJECT_ROOT } = require('app-root-path');
+import { PROJECT_ROOT, APP_CONFIG_FILE } from '../constants';
 
-// const { WEBPACK_DIR, NODE_MODULES_DIR } = require(path.resolve(PROJECT_ROOT, 'app_config/directory_path.js'));
-const appConfig = require(path.resolve(PROJECT_ROOT, 'app_config/config.js'));
-const getWebpackResolve = require(path.resolve(PROJECT_ROOT, 'webpack.base.config.js'));
+const appConfig = require(APP_CONFIG_FILE);
+const getWebpackRootConfig = require(path.resolve(PROJECT_ROOT, 'webpack.base.config.js'));
 
 
 const { VueLoaderPlugin } = require('vue-loader');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 
@@ -14,7 +14,7 @@ function resolve(dir) {
     return path.resolve(PROJECT_ROOT, dir);
 }
 
-module.exports = () => {
+export const getWebpackBaseConfig = () => {
     return {
         entry: {
             app: resolve('src/main.js'),
@@ -47,7 +47,7 @@ module.exports = () => {
                 },
             ],
         },
-        resolve: getWebpackResolve().resolve,
+        resolve: getWebpackRootConfig().resolve,
         plugins: [
             new VueLoaderPlugin(),
             new HtmlWebpackPlugin({
