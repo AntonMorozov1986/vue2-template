@@ -1,33 +1,18 @@
-import { HotModuleReplacementPlugin } from 'webpack';
+import { merge } from 'webpack-merge';
+import * as loaders from '../modules/loaders';
+import * as plugins from '../modules/plugins';
 
 export const getWebpackDevConfig = () => {
-    return {
-        entry: {
-            app: './src/main.js',
+    return merge(
+        {
+            entry: {
+                app: './src/main.js',
+            },
+            mode: 'development',
+            devtool: 'eval-cheap-module-source-map',
         },
-        mode: 'development',
-        module: {
-            rules: [
-                {
-                    test: /\.css$/,
-                    use: [
-                        'vue-style-loader',
-                        'css-loader',
-                    ],
-                },
-                {
-                    test: /\.s[ca]ss$/i,
-                    use: [
-                        'vue-style-loader',
-                        'css-loader',
-                        'sass-loader',
-                    ],
-                },
-            ],
-        },
-        plugins: [
-            new HotModuleReplacementPlugin(),
-        ],
-        devtool: 'eval-cheap-module-source-map',
-    };
+        loaders.cssLoaderDev(),
+        loaders.sassLoaderDev(),
+        plugins.hotReplacePlugin()
+    );
 };
