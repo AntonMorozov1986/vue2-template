@@ -3,20 +3,22 @@ import { merge } from 'webpack-merge';
 
 import {
     getWebpackBaseConfig,
-    getWebpackCheckConfig,
     getWebpackDevConfig,
     getWebpackProdConfig
 } from './configs';
 
 export const getWebpackCompiler = () => {
     let config = getWebpackBaseConfig();
-    if (process.env.NODE_ENV === 'production') {
-        config = merge(config, getWebpackProdConfig());
-        if (process.env.CHECK_BUILD) {
-            config = merge(config, getWebpackCheckConfig());
-        }
-    } else {
-        config = merge(config, getWebpackDevConfig());
+
+    switch (process.env.NODE_ENV) {
+        case 'production':
+            config = merge(config, getWebpackProdConfig());
+            break;
+        case 'development':
+            config = merge(config, getWebpackDevConfig());
+            break;
+        default:
+            config = merge(config, getWebpackProdConfig());
     }
 
     const compiler = webpack(config);

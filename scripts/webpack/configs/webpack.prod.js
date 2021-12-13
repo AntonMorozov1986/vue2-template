@@ -52,6 +52,7 @@ export const getWebpackProdConfig = () => {
         },
         loaders.cssLoaderProd(),
         loaders.sassLoaderProd(),
-        plugins.miniCssExtractPlugin()
+        plugins.miniCssExtractPlugin(),
+        plugins.bundleAnalyzePlugin()
     );
 };

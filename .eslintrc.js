@@ -12,6 +12,9 @@ module.exports = {
         'eslint:recommended',
         'plugin:vue/recommended',
     ],
+    globals: {
+        __ENV__: true,
+    },
     rules: {
         'camelcase': [0, {
             properties: 'never',
