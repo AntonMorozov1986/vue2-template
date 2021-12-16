@@ -27,7 +27,8 @@
     },
     "homepage": "https://github.com/AntonMorozov1986/vue2-template#readme",
     "dependencies": {
-        "vue": "^2.6.14"
+        "vue": "^2.6.14",
+        "vue-router": "^3.5.3"
     },
     "devDependencies": {
         "@babel/core": "^7.16.0",

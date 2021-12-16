@@ -13,12 +13,17 @@ module.exports = () => {
             alias: {
                 'vue$': 'vue/dist/vue.runtime.esm.js',
                 '@src': resolve('src'),
-                '@fonts': resolve('src/assets/fonts'),
-                '@styles': resolve('src/styles'),
                 '@global': resolve('src/global'),
-                '@components': resolve('src/components'),
                 '@constants': resolve('src/global/constants'),
+
                 '@api': resolve('src/api'),
+                '@router': resolve('src/router'),
+
+                '@views': resolve('src/views'),
+                '@components': resolve('src/components'),
+
+                '@styles': resolve('src/styles'),
+                '@fonts': resolve('src/assets/fonts'),
             },
         },
     };

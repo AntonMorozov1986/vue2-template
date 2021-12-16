@@ -18,6 +18,14 @@ export const getWebpackBaseConfig = () => {
             entry: {
                 app: resolve('src/main.js'),
             },
+            output: {
+                clean: true,
+                path: resolve('dist'),
+                publicPath: '/',
+                assetModuleFilename: 'assets/[hash][ext]',
+                filename: 'assets/js/[name].[contenthash:8].js',
+                chunkFilename: 'assets/js/[name].[chunkhash:8].js',
+            },
             module: {
                 noParse: /^(vue|vue-router|vuex|vuex-router-sync)$/,
             },
@@ -38,6 +46,7 @@ export const getWebpackBaseConfig = () => {
         // plugins
         plugins.vuePlugin(),
         plugins.htmlPlugin(),
-        plugins.definePlugin()
+        plugins.definePlugin(),
+        plugins.progressBarPlugin()
     );
 };

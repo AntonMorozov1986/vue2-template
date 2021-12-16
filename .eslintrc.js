@@ -53,7 +53,9 @@ module.exports = {
         'newline-per-chained-call': [2, {
             ignoreChainWithDepth: 2,
         }],
-        'array-bracket-spacing': [2, 'never'],
+        'array-bracket-spacing': [2, 'never', {
+            singleValue: true,
+        }],
         'object-curly-spacing': [2, 'always'],
         'arrow-parens': [2, 'as-needed'],
         'no-confusing-arrow': [2, {
