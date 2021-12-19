@@ -26,5 +26,39 @@ export const buildOptimize = () => ({
         usedExports: true,
         // check sideEffect flag in package.json dependencies for TreeShaking
         sideEffects: true,
+
+        // Эта опция включена всегда. Конфигурируется в SplitChunksPlugin
+        splitChunks: {
+            // Режим разделения кода. По умолчанию - 'async', 'all' - отделяет чанки vendors и чанки приложения
+            // 'async' - чанки с асинхронным (динамическим) импортом внутри приложения
+            // 'initial' - чанки библиотек (node_modules / vendors)
+            chunks: 'all', // 'async', 'initial', 'all' (async + initial)
+            // Минимальный размер нового чанка для отделения.
+            minSize: 30000, // bytes
+            // Максимальный размер чанка
+            maxSize: 100000,
+            // Минимальное кол-во чанков, которые зависят от модуля, чтобы выделить модуль в отдельный чанк
+            minChunks: 1,
+            //Максимальное кол-во одновременных параллельных запросов чанков для асинхронного сплитинга
+            //Всегда предпочитаются чанки большого размера
+            maxAsyncRequests: 5,
+            // Максимальное кол-во одновременных параллельных запросов чанков на один entrypoint
+            //Всегда предпочитаются чанки большого размера
+            maxInitialRequests: 3,
+
+            cacheGroups: {
+                vendor: {
+                    name: 'vendors',
+                    chunks: 'initial',
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true,
+                },
+            },
+        },
     },
 });

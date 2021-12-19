@@ -8,7 +8,7 @@
             >
                 <router-link
                     class="main-menu__link"
-                    :class="{'main-menu__link-active': menuItem.name === activeName}"
+                    :class="{'main-menu__link-active': menuItem.name === $route.name}"
                     :to="{name: menuItem.name}"
                     @click="activeName = menuItem.name"
                 >
@@ -90,7 +90,7 @@ export default {
             width: 0;
             height: 3px;
 
-            background-color: #3498db;
+            background-color: #3c80f1;
             border-radius: 3px;
 
             transition: width 0.3s, background-color 0.3s;
@@ -102,6 +102,8 @@ export default {
             color: #95a5a6;
             &:after {
                 width: 100%;
+
+                background-color: #98b8ed;
             }
         }
 
@@ -115,7 +117,7 @@ export default {
             &:after{
                 width: 100%;
 
-                background-color: #f25e5e;
+                background-color: #3c80f1;
             }
         }
     }
