@@ -1,4 +1,5 @@
 import TerserPlugin from 'terser-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 export const buildOptimize = () => ({
     optimization: {
@@ -6,7 +7,10 @@ export const buildOptimize = () => ({
 
         // production*: minification JavaScript
         minimize: true,
-        minimizer: [ new TerserPlugin() ],
+        minimizer: [
+            new TerserPlugin(),
+            new CssMinimizerPlugin(),
+        ],
         // production*: stop emmit when errors in compilation
         emitOnErrors: false,
         // any*: don't add empty chunks in bundle
@@ -60,5 +64,7 @@ export const buildOptimize = () => ({
                 },
             },
         },
+        // Выносит webpack runtime каждого entrypoint в отдельный чанк. default - false;
+        runtimeChunk: true,
     },
 });
