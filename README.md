@@ -11,3 +11,4 @@
 
 - setup minimizers (Terser and CssMinimizer)
 - setup postcss
+- add Vuex
