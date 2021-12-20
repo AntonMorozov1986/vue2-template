@@ -25,6 +25,7 @@ module.exports = () => {
 
                 '@styles': resolve('src/styles'),
                 '@fonts': resolve('src/assets/fonts'),
+                '@images': resolve('src/assets/images'),
             },
         },
     };

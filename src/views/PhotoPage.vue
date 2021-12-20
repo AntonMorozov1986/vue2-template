@@ -6,6 +6,12 @@
         <p class="photo__description">
             This template help you to start project on Vue2
         </p>
+        <img
+            src="@images/multfilm.jpg"
+            alt="my photo"
+            width="1024"
+            height="683"
+        >
     </div>
 </template>
 
