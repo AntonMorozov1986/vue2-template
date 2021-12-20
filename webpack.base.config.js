@@ -18,6 +18,7 @@ module.exports = () => {
 
                 '@api': resolve('src/api'),
                 '@router': resolve('src/router'),
+                '@store': resolve('src/store'),
 
                 '@views': resolve('src/views'),
                 '@components': resolve('src/components'),
